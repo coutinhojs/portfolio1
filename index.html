@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* Estilo do texto selecionado */
+    ::selection {
+        background: #333333;
+        color: #ffffff;
+        text-shadow: 0 0 10px #ffffff;
+    }
+
+    /* Estilos do corpo da página */
+    body {
+        background: radial-gradient(circle at 50% 10%, #1a1a1a 0%, #000000 100%);
+        background-attachment: fixed; /* O fundo fica fixo enquanto o site rola (efeito premium) */
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden; /* Evita barra de rolagem horizontal durante animações */
+        scroll-behavior: smooth;
+    }
+
+    /* Estilos para o cabeçalho principal (h1) */
+    .titulo{
+        font-size: 100px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        /* Efeito de texto cromado */
+        background: linear-gradient(to right, #4d4d4d 0%, #ffffff 25%, #4d4d4d 50%, #ffffff 75%, #4d4d4d 100%);
+        background-size: 200% auto;
+        /* Gradiente que simula o reflexo do cromo */
+        -webkit-background-clip: text;
+        /* Aplica o fundo apenas no texto (para navegadores WebKit) */
+        background-clip: text;
+        /* Padrão para aplicar o fundo apenas no texto */
+        -webkit-text-fill-color: transparent;
+        /* Torna a cor do texto transparente para mostrar o fundo */
+
+        /* Efeito de brilho neon vermelho para combinar com o site */
+      
+        /* Aplica duas sombras para criar um brilho intenso */
+        animation: animetad 8s linear infinite;
+        /* Animação para criar um efeito de movimento no brilho */
+    }
+    @keyframes animetad {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Navbar Profissional */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        transition: 0.5s;
+    }
+
+    header.sticky {
+        background: rgba(0, 0, 0, 0.9);
+        padding: 15px 50px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    header .logo {
+        color: #fff;
+        font-weight: 800;
+        font-size: 24px;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    header ul {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    header ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        transition: 0.3s;
+        opacity: 0.7;
+    }
+
+    header ul li a:hover {
+        opacity: 1;
+        color: #fff;
+    }
+
+    /* Efeito de Digitação */
+    .typing-container {
+        font-size: 24px;
+        color: #ccc;
+        margin-top: 10px;
+        height: 30px; /* Altura fixa para evitar pulos */
+        font-weight: 300;
+    }
+    
+    .typing-text::after {
+        content: '|';
+        animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    /* Ícones de redes sociais */
+    .fa-brands, .fa-solid {
+        font-size: 30px;
+        display: inline-block;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    /* Contêiner dos ícones sociais */
+    .social-icons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        min-height: 100vh;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+    }
+
+    /* Container para os ícones ficarem lado a lado */
+    .icons-container {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    /* Container para o conteúdo (imagem e texto) */
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Indicador de scroll (setas) */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        animation: setinhas 2s infinite;
+    }
+
+    .scroll-indicator i {
+        font-size: 40px;
+        margin: -10px 0; /* Aproxima as setas para ficarem juntas */
+    }
+
+    @keyframes setinhas {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(-10px);}
+        60% {transform: translateY(-5px);}
+    }
+
+    p {
+        font-size: 24px;
+        margin: 0;
+        color: #cccccc; /* Cor cinza claro para melhor leitura */
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    /* Links dos ícones sociais */
+    .social-icons a {
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        text-decoration: none;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    /* Efeito hover nos links */
+    .social-icons a:hover {
+        transform: translateY(-5px);
+        background-color: #ffffff;
+        box-shadow: 0 0 20px #ffffff;
+    }
+
+    /* Efeito hover nos ícones */
+    .social-icons a:hover i {
+        color: #000000;
+        text-shadow: none;
+    }
+
+    .titulo2{
+        min-height: 100vh;
+        padding: 100px 0; /* Espaçamento normalizado */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+        
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        /* Efeito de texto cromado */
+        background: linear-gradient(to right, #4d4d4d 0%, #ffffff 25%, #4d4d4d 50%, #ffffff 75%, #4d4d4d 100%);
+        background-size: 200% auto;
+        /* Gradiente que simula o reflexo do cromo */
+        -webkit-background-clip: text;
+        /* Aplica o fundo apenas no texto (para navegadores WebKit) */
+        background-clip: text;
+        /* Padrão para aplicar o fundo apenas no texto */
+        -webkit-text-fill-color: transparent;
+        /* Torna a cor do texto transparente para mostrar o fundo */
+
+        /* Efeito de brilho neon vermelho para combinar com o site */
+      
+        /* Aplica duas sombras para criar um brilho intenso */
+        animation: animetad 8s linear infinite;
+        /* Animação para criar um efeito de movimento no brilho */
+    }
+    @keyframes animetad {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .titulo2 h1 {
+        font-size: clamp(60px, 12vw, 120px); /* Fonte maior e mais impactante */
+        line-height: 1.1;
+        margin-bottom: 30px;
+        letter-spacing: -2px;
+        font-weight: 800;
+    }
+
+    .projetos-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+        gap: 40px; /* Espaço normal entre os cards */
+        padding-bottom: 100px;
+    }
+
+    .projeto1, .projeto2, .projeto3, .projeto4 {
+        width: 45%;
+        min-width: 300px;
+        min-height: 550px; /* Altura fixa para alinhar todos os cards */
+        margin: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px;
+        background-color: #111;
+        border: 1px solid #333; 
+        border-radius: 20px;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        transform-style: preserve-3d; /* Necessário para o efeito 3D */
+    }
+
+    /* Efeito hover nos projetos */
+    .projeto1:hover, .projeto2:hover, .projeto3:hover, .projeto4:hover {
+        transform: translateY(-10px); /* Sobe um pouquinho */
+        border-color: #fff;
+    }
+    
+    .projeto1 img, .projeto2 img, .projeto3 img, .projeto4 img {
+        width: 100%;
+        height: 280px; /* Um pouco mais alto para valorizar a imagem */
+        object-fit: cover; /* A imagem cobre a área sem esticar */
+        border-radius: 12px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+        opacity: 0.9;
+        transform: translateZ(20px); /* A imagem salta para frente no 3D */
+    }
+
+    /* Zoom na imagem ao passar o mouse */
+    .projeto1:hover img, .projeto2:hover img, .projeto3:hover img, .projeto4:hover img {
+        transform: scale(1.03);
+    }
+
+    .projeto1 h3, .projeto2 h3, .projeto3 h3, .projeto4 h3 {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0 0 10px 0;
+        color: #fff;
+        transform: translateZ(30px); /* Texto salta mais ainda */
+    }
+
+    .projeto1 p, .projeto2 p, .projeto3 p, .projeto4 p {
+        font-size: 16px;
+        color: #aaa;
+        margin-bottom: 20px;
+        line-height: 1.5;
+        opacity: 1; /* Texto sempre visível */
+        transform: none;
+        transform: translateZ(30px);
+    }
+
+    /* Texto aparece ao passar o mouse */
+    .projeto1:hover p, .projeto2:hover p, .projeto3:hover p, .projeto4:hover p {
+        color: #ffffff;
+    }
+
+    /* Botão ver mais */
+    .btn-projeto {
+        padding: 10px 25px;
+        background-color: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-top: auto; /* Empurra o botão para o final se o card crescer */
+        transform: translateZ(40px); /* Botão no topo da pilha 3D */
+    }
+
+    .btn-projeto:hover {
+        background-color: #fff;
+        color: #000;
+        transform: scale(1.05);
+    }
+
+    /* Estilo para projetos em desenvolvimento */
+    .em-breve {
+        opacity: 0.5;
+        pointer-events: none; /* Desabilita cliques */
+        filter: grayscale(100%);
+        border-style: dashed; /* Borda tracejada para indicar que está em construção */
+    }
+
+    .icon-dev {
+        font-size: 80px;
+        color: #333;
+        margin: 80px 0; /* Espaço para substituir a imagem visualmente */
+        transform: translateZ(20px);
+    }
+
+    /* Estilos da Seção de Habilidades */
+    .habilidades {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 0; /* Espaçamento normalizado */
+        min-height: 100vh;
+        background: linear-gradient(to top, #000000, transparent);
+    }
+
+    .habilidades h2 {
+        font-size: 60px;
+        margin-bottom: 80px;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        font-weight: 200;
+    }
+
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 50px;
+        max-width: 1200px;
+    }
+
+    .skill-card {
+        background-color: rgba(20, 20, 20, 0.8);
+        padding: 50px;
+        border-radius: 20px;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .skill-card:hover {
+        transform: translateY(-20px);
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
+        background-color: #000;
+    }
+
+    .skill-card i {
+        font-size: 70px;
+        margin-bottom: 20px;
+    }
+
+    .skill-card p {
+        font-size: 20px;
+        font-weight: 400;
+        color: #fff;
+        letter-spacing: 2px;
+    }
+
+    /* Rodapé simples */
+    footer {
+        width: 100%;
+        padding: 40px 20px;
+        text-align: center;
+        background-color: #000;
+        border-top: 1px solid #222;
+        color: #666;
+        font-size: 14px;
+        margin-top: auto;
+    }
+   
+    /* Classes para animação de Scroll (Aparecer quando descer) */
+    .hidden {
+        opacity: 0;
+        filter: blur(5px);
+        transform: translateY(100px); /* Começa mais de baixo para efeito dramático */
+        transition: all 1s ease-out; /* Demora 1s para aparecer */
+    }
+
+    .show {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0); /* Vai para a posição original */
+    }
+
+    /* Atraso para elementos filhos (efeito cascata) */
+    .projeto2, .projeto4 { transition-delay: 200ms; }
+    .skill-card:nth-child(even) { transition-delay: 100ms; }
+
+    /* Seção de Contato Profissional */
+    .contato {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 0;
+        min-height: 80vh;
+        background: linear-gradient(to bottom, transparent, #000000);
+    }
+
+    .contato h2 {
+        font-size: 60px;
+        margin-bottom: 60px;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        font-weight: 200;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 700px;
+        background-color: rgba(20, 20, 20, 0.8);
+        padding: 60px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        color: #fff;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+        border-color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    textarea.form-input {
+        resize: vertical;
+        min-height: 180px;
+    }
+
+    .btn-enviar {
+        padding: 18px;
+        background-color: #fff;
+        color: #000;
+        border: none;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .btn-enviar:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+    }
+
+    /* --- ADAPTAÇÃO PARA CELULAR (RESPONSIVO) --- */
+    @media (max-width: 768px) {
+        /* Ajustes Gerais */
+        body { overflow-x: hidden; }
+        
+        /* Header / Menu */
+        header {
+            padding: 15px 20px;
+            flex-direction: column;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.95); /* Fundo mais sólido no mobile */
+        }
+        header ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
+        header ul li a { font-size: 14px; }
+
+        /* Títulos e Textos */
+        .titulo { font-size: 50px; margin-top: 60px; } /* Nome principal menor */
+        .titulo2 h1 { font-size: 40px; letter-spacing: 0; }
+        .titulo2 { padding: 50px 0; min-height: auto; }
+        p { font-size: 18px; }
+        
+        /* Seção Social */
+        .social-icons { min-height: 80vh; }
+        .icons-container { gap: 20px; }
+        .typing-container { font-size: 18px; }
+
+        /* Projetos */
+        .projetos-container { gap: 30px; padding-bottom: 50px; }
+        
+        .projeto1, .projeto2, .projeto3, .projeto4 {
+            width: 90%; /* Ocupa quase toda a tela */
+            min-width: auto;
+            min-height: auto;
+            padding: 20px;
+        }
+
+        .projeto1 img, .projeto2 img, .projeto3 img, .projeto4 img {
+            height: 200px; /* Imagem menor */
+        }
+
+        /* No celular, mostra o texto e botão sempre (sem hover) */
+        .projeto1 p, .projeto2 p, .projeto3 p, .projeto4 p,
+        .btn-projeto {
+            opacity: 1;
+            transform: none;
+            color: #ccc;
+        }
+        .btn-projeto { margin-top: 15px; display: inline-block; }
+
+        /* Habilidades */
+        .habilidades h2 { font-size: 35px; letter-spacing: 2px; margin-bottom: 40px; }
+        .skills-container { gap: 20px; }
+        .skill-card { width: 45%; padding: 20px; } /* 2 por linha */
+        .skill-card i { font-size: 40px; }
+        .skill-card p { font-size: 16px; }
+
+        /* Contato */
+        .contato h2 { font-size: 35px; letter-spacing: 2px; }
+        .form-container { padding: 30px 20px; width: 90%; }
+        .contato { padding: 50px 0; }
+    }
+
+</style>
+<body>
+    <header>
+        <a href="#" class="logo">Portfólio.</a>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#about">Sobre</a></li>
+            <li><a href="#portfolio">Projetos</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#contact">Contato</a></li>
+        </ul>
+    </header>
+
+    <div class="social-icons" id="home">
+       <div class="content-container">
+           <p class="hidden">Opa! Meu nome é </p>
+           <h1 class="titulo hidden" style="transition-delay: 200ms;">Marcos Coutinho</h1>
+           <div class="typing-container hidden" style="transition-delay: 400ms;"><span class="typing-text"></span></div>
+       </div>
+       <div class="icons-container hidden" style="transition-delay: 600ms;">
+            <a href="https://github.com/coutinhojs" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/marcos-c-610113354?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:coutinhoprog@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+       </div>
+       <div class="scroll-indicator hidden" style="transition-delay: 800ms;">
+           <i class="fa-solid fa-angle-down"></i>
+           <i class="fa-solid fa-angle-down"></i>
+       </div>
+    </div>
+    
+    <div class="titulo2 hidden" id="about">
+        <h1>Boas-Vindas ao meu portfólio!</h1>
+    </div>
+    <section id="portfolio">
+            <h2 style="text-align: center; font-size: 50px; margin-bottom: 100px; color: #fff; letter-spacing: 10px; font-weight: 200;">MEUS PROJETOS</h2>
+    
+            <div class="projetos-container">
+                <!-- Projeto 1 -->
+                <div class="projeto1 hidden">
+                    <img src="projeto1.jpeg" alt="Projeto 1">
+                    <h3>Studio Codar</h3>
+                    <p>Um site feito para iniciantes na programação.</p>
+                    <a href="#" class="btn-projeto">Ver Mais</a>
+                </div>
+                <!-- Projeto 2 -->
+                <div class="projeto2 hidden em-breve">
+                     <i class="fa-solid fa-code icon-dev"></i>
+                     <h3>EM DESENVOLVIMENTO</h3>
+                    <p>Novidades em breve...</p>
+                    <a href="#" class="btn-projeto">Aguarde</a>
+                </div>
+                <!-- Projeto 3 -->
+                <div class="projeto3 hidden em-breve">
+                    <i class="fa-solid fa-layer-group icon-dev"></i>
+                    <h3>EM DESENVOLVIMENTO</h3>
+                    <p>Novidades em breve...</p>
+                    <a href="#" class="btn-projeto">Aguarde</a>
+                </div>
+                     <!-- Projeto 4 -->
+                <div class="projeto4 hidden em-breve">
+                    <i class="fa-solid fa-screwdriver-wrench icon-dev"></i>
+                    <h3>EM DESENVOLVIMENTO</h3>
+                    <p>Novidades em breve...</p>
+                    <a href="#" class="btn-projeto">Aguarde</a>
+                </div>
+            </div>
+
+    </section>
+
+    <section class="habilidades hidden" id="skills">
+        <h2>Minhas Habilidades</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i class="fa-brands fa-html5" style="color: #e34f26;"></i>
+                <p>HTML5</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-css3-alt" style="color: #1572b6;"></i>
+                <p>CSS3</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-js" style="color: #f7df1e;"></i>
+                <p>JavaScript</p>
+            </div>
+        
+            <div class="skill-card">
+                <i class="fa-brands fa-git-alt" style="color: #f05032;"></i>
+                <p>Git</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-github" style="color: #ffffff;"></i>
+                <p>GitHub</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-php" style="color: #777BB4;"></i>
+                <p>PHP</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contato hidden" id="contact">
+        <h2>Entre em Contato</h2>
+        <form class="form-container" action="https://formsubmit.co/coutinhoprog@gmail.com" method="POST">
+            <input type="text" name="name" class="form-input" placeholder="Seu Nome" required>
+            <input type="email" name="email" class="form-input" placeholder="Seu E-mail" required>
+            <textarea name="message" class="form-input" placeholder="Sua Mensagem" required></textarea>
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Novo Contato do Portfólio!">
+            <button type="submit" class="btn-enviar">Enviar <i class="fa-solid fa-envelope"></i></button>
+        </form>
+    </section>
+
+    <footer>
+        <p style="font-size: 14px;">&copy; 2024 Marcos Coutinho. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script para animação de scroll -->
+    <script>
+        // Forçar rolagem para o topo ao recarregar a página (F5)
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+
+        // Navbar Sticky (Muda de cor ao rolar)
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+
+        // Efeito de Digitação (Typewriter)
+        const textElement = document.querySelector('.typing-text');
+        const words = ["Desenvolvedor Web", "Criativo", "Apaixonado por Tech", "Freelancer"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentWord.substring(0, charIndex--);
+            } else {
+                textElement.textContent = currentWord.substring(0, charIndex++);
+            }
+
+            let typeSpeed = isDeleting ? 100 : 200;
+
+            if (!isDeleting && charIndex === currentWord.length + 1) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pausa no final da palavra
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', typeEffect);
+
+        // Efeito 3D Tilt nos Cards (Vanilla JS)
+        // Só ativa se a tela for maior que 768px (Desktop/Tablet grande)
+        if (window.matchMedia("(min-width: 769px)").matches) {
+            const cards = document.querySelectorAll('.projeto1, .projeto2, .projeto3, .projeto4');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -10; // Rotação máxima de 10 graus
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
