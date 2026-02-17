@@ -657,7 +657,7 @@
             <div class="projetos-container">
                 <!-- Projeto 1 -->
                 <div class="projeto1 hidden">
-                    <img src="projeto1.jpeg" alt="Projeto 1">
+                    <img src="studio1.png" alt="Studio Codar">
                     <h3>Studio Codar</h3>
                     <p>Um site feito para iniciantes na programação.</p>
                     <a href="#" class="btn-projeto">Ver Mais</a>
@@ -715,18 +715,21 @@
                 <i class="fa-brands fa-php" style="color: #777BB4;"></i>
                 <p>PHP</p>
             </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-database" style="color: #00758f;"></i>
+                <p>MySQL</p>
+            </div>
         </div>
     </section>
 
     <section class="contato hidden" id="contact">
         <h2>Entre em Contato</h2>
-        <form class="form-container" action="https://formsubmit.co/coutinhoprog@gmail.com" method="POST">
+        <form class="form-container" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="a40724ec-124f-4bc2-9c71-c34c14f6f448">
             <input type="text" name="name" class="form-input" placeholder="Seu Nome" required>
             <input type="email" name="email" class="form-input" placeholder="Seu E-mail" required>
             <textarea name="message" class="form-input" placeholder="Sua Mensagem" required></textarea>
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="Novo Contato do Portfólio!">
-            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="subject" value="Novo Contato do Portfólio!">
             <button type="submit" class="btn-enviar">Enviar <i class="fa-solid fa-envelope"></i></button>
         </form>
     </section>
@@ -820,6 +823,4 @@
         }
     </script>
 </body>
-
 </html>
-
