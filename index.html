@@ -105,6 +105,10 @@
         padding: 0;
     }
 
+    header .menu-toggle {
+        display: none;
+    }
+
     header ul li a {
         color: #fff;
         text-decoration: none;
@@ -213,6 +217,16 @@
     .scroll-indicator i {
         font-size: 40px;
         margin: -10px 0; /* Aproxima as setas para ficarem juntas */
+    }
+
+    @media (max-width: 768px) {
+        .scroll-indicator {
+            bottom: 20px;
+        }
+        .scroll-indicator i {
+            font-size: 32px;
+            margin: -6px 0;
+        }
     }
 
     @keyframes setinhas {
@@ -620,10 +634,61 @@
             padding: 15px 20px;
             flex-direction: column;
             gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
             background: rgba(0, 0, 0, 0.95); /* Fundo mais sólido no mobile */
         }
-        header ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
-        header ul li a { font-size: 14px; }
+        header .menu-toggle {
+            display: block;
+            position: absolute;
+            right: 20px;
+            top: 18px;
+            z-index: 1002;
+            background: transparent;
+            border: none;
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            outline: none;
+        }
+        header .menu-toggle i {
+            color: #fff;
+        }
+        header .menu-toggle:hover i,
+        header .menu-toggle:focus i {
+            color: #ffffff;
+        }
+        header ul {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            gap: 12px;
+            list-style: none;
+            margin: 0;
+            padding: 20px 0 0;
+            background: rgba(0, 0, 0, 0.95);
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        header.mobile-open {
+            background: rgba(0, 0, 0, 0.95);
+        }
+        header.mobile-open ul {
+            display: flex;
+        }
+        header ul li a {
+            font-size: 14px;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header.sticky {
+            padding: 15px 20px;
+        }
 
         /* Títulos e Textos */
         .titulo { font-size: 50px; margin-top: 60px; } /* Nome principal menor */
@@ -676,6 +741,9 @@
 <body>
     <header>
         <a href="#" class="logo">Portfólio.</a>
+        <button class="menu-toggle" aria-label="Abrir menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         <ul>
             <li><a href="#home">Início</a></li>
             <li><a href="#about">Sobre</a></li>
@@ -841,8 +909,29 @@
         hiddenElements.forEach((el) => observer.observe(el));
 
         // Navbar Sticky (Muda de cor ao rolar)
+        const menuToggle = document.querySelector('.menu-toggle');
+        const header = document.querySelector('header');
+
+        menuToggle.addEventListener('click', function() {
+            header.classList.toggle('mobile-open');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+
+        const navLinks = document.querySelectorAll('header ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (header.classList.contains('mobile-open')) {
+                    header.classList.remove('mobile-open');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-xmark');
+                }
+            });
+        });
+
         window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
             header.classList.toggle('sticky', window.scrollY > 0);
         });
 
