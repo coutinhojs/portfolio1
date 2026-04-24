@@ -165,6 +165,34 @@
         gap: 30px;
     }
 
+    .icons-container a {
+        position: relative;
+    }
+
+    .icons-container a::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 10px;
+        font-size: 12px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        transform: translateX(-50%) translateY(5px);
+        z-index: 1001;
+    }
+
+    .icons-container a:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
     /* Container para o conteúdo (imagem e texto) */
     .content-container {
         display: flex;
@@ -302,10 +330,14 @@
         background-color: #111;
         border: 1px solid #333; 
         border-radius: 20px;
-        transition: transform 0.3s ease;
+        transition: transform 0.2s ease;
         position: relative;
         overflow: hidden;
         transform-style: preserve-3d; /* Necessário para o efeito 3D */
+        will-change: transform;
+        backface-visibility: hidden;
+        user-select: none;
+        -webkit-user-drag: none;
     }
 
     /* Efeito hover nos projetos */
@@ -342,30 +374,52 @@
         font-size: 16px;
         color: #aaa;
         margin-bottom: 20px;
-        line-height: 1.5;
+        line-height: 1.7;
         opacity: 1; /* Texto sempre visível */
         transform: none;
         transform: translateZ(30px);
+        text-align: justify;
     }
 
-    /* Texto aparece ao passar o mouse */
-    .projeto1:hover p, .projeto2:hover p, .projeto3:hover p, .projeto4:hover p {
-        color: #ffffff;
+    .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 20px;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        transform: translateZ(30px);
     }
 
-    /* Botão ver mais */
+    .project-tech span {
+        padding: 10px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ccc;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.05);
+        white-space: nowrap;
+        min-width: 90px;
+        text-align: center;
+    }
+
     .btn-projeto {
-        padding: 10px 25px;
+        padding: 12px 30px;
         background-color: transparent;
         border: 1px solid #fff;
         color: #fff;
-        border-radius: 30px;
+        border-radius: 12px;
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
         transition: all 0.3s ease;
         margin-top: auto; /* Empurra o botão para o final se o card crescer */
         transform: translateZ(40px); /* Botão no topo da pilha 3D */
+        align-self: flex-end;
+        min-width: 170px;
     }
 
     .btn-projeto:hover {
@@ -638,9 +692,9 @@
            <div class="typing-container hidden" style="transition-delay: 400ms;"><span class="typing-text"></span></div>
        </div>
        <div class="icons-container hidden" style="transition-delay: 600ms;">
-            <a href="https://github.com/coutinhojs" target="_blank"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/marcos-c-610113354?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:coutinhoprog@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/coutinhojs" target="_blank" rel="noopener noreferrer" data-tooltip="GitHub - ver repositório e código"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/marcos-c-610113354?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" data-tooltip="LinkedIn - acessar perfil profissional"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="mailto:coutinhoprog@gmail.com" data-tooltip="Email - enviar mensagem"><i class="fa-solid fa-envelope"></i></a>
        </div>
        <div class="scroll-indicator hidden" style="transition-delay: 800ms;">
            <i class="fa-solid fa-angle-down"></i>
@@ -656,28 +710,51 @@
     
             <div class="projetos-container">
                 <!-- Projeto 1 -->
-                <div class="projeto1 hidden">
-                    <img src="studio1.png" alt="Studio Codar">
+                <div class="projeto1 hidden" draggable="false">
+                    <img src="studio1.png" alt="Studio Codar" draggable="false">
                     <h3>Studio Codar</h3>
-                    <p>Um site feito para iniciantes na programação.</p>
-                    <a href="#" class="btn-projeto">Ver Mais</a>
+                    <p>Site Studio Codar com conteúdo para iniciantes, incluindo templates prontos, área de código ao vivo e um chatbot, além de aplicações práticas e design responsivo para facilitar o primeiro contato com programação.</p>
+                    <div class="project-tech">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>PHP</span>
+                        <span>Bootstrap</span>
+                    </div>
+                    <a href="https://studiocodar.rf.gd/aplica%C3%A7%C3%B5es.php" target="_blank" rel="noopener noreferrer" class="btn-projeto">Ver projeto</a>
                 </div>
                 <!-- Projeto 2 -->
-                <div class="projeto2 hidden em-breve">
-                     <i class="fa-solid fa-code icon-dev"></i>
-                     <h3>EM DESENVOLVIMENTO</h3>
-                    <p>Novidades em breve...</p>
-                    <a href="#" class="btn-projeto">Aguarde</a>
+                <div class="projeto2 hidden" draggable="false">
+                    <img src="project2.png" alt="Barbearia Online" draggable="false">
+                    <h3>Barbearia Online</h3>
+                    <p>Sistema de agendamento e gestão para barbearia, desenvolvido em equipe com foco em usabilidade, atendimento personalizado e organização de serviços.</p>
+                    <div class="project-tech">
+                        <span>Laravel</span>
+                        <span>PHP</span>
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>MySQL</span>
+                        <span>Bootstrap</span>
+                    </div>
+                    <a href="https://github.com/coutinhojs/barbearia" target="_blank" class="btn-projeto">Ver projeto</a>
                 </div>
                 <!-- Projeto 3 -->
-                <div class="projeto3 hidden em-breve">
-                    <i class="fa-solid fa-layer-group icon-dev"></i>
-                    <h3>EM DESENVOLVIMENTO</h3>
-                    <p>Novidades em breve...</p>
-                    <a href="#" class="btn-projeto">Aguarde</a>
+                <div class="projeto3 hidden" draggable="false">
+                    <img src="project3.png" alt="Painel de Administrador" draggable="false">
+                    <h3>Painel de Administrador</h3>
+                    <p>Painel administrativo criado com Laravel e Filament para a barbearia, com acesso separado para administrador e barbeiros, permitindo que cada um veja apenas seus próprios agendamentos e gerencie seu controle individual.</p>
+                    <div class="project-tech">
+                        <span>Laravel</span>
+                        <span>PHP</span>
+                        <span>Filament</span>
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
                 </div>
-                     <!-- Projeto 4 -->
-                <div class="projeto4 hidden em-breve">
+                    <!-- Projeto 4 -->
+                <div class="projeto4 hidden em-breve" draggable="false">
                     <i class="fa-solid fa-screwdriver-wrench icon-dev"></i>
                     <h3>EM DESENVOLVIMENTO</h3>
                     <p>Novidades em breve...</p>
@@ -702,7 +779,14 @@
                 <i class="fa-brands fa-js" style="color: #f7df1e;"></i>
                 <p>JavaScript</p>
             </div>
-        
+            <div class="skill-card">
+                <i class="fa-brands fa-python" style="color: #3776AB;"></i>
+                <p>Python</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-laravel" style="color: #FF2D20;"></i>
+                <p>Laravel</p>
+            </div>
             <div class="skill-card">
                 <i class="fa-brands fa-git-alt" style="color: #f05032;"></i>
                 <p>Git</p>
@@ -800,6 +884,9 @@
             const cards = document.querySelectorAll('.projeto1, .projeto2, .projeto3, .projeto4');
             
             cards.forEach(card => {
+                card.addEventListener('dragstart', (e) => {
+                    e.preventDefault();
+                });
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
@@ -808,14 +895,14 @@
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
                     
-                    const rotateX = ((y - centerY) / centerY) * -10; // Rotação máxima de 10 graus
-                    const rotateY = ((x - centerX) / centerX) * 10;
+                    const rotateX = ((y - centerY) / centerY) * -6; // Rotação mais suave
+                    const rotateY = ((x - centerX) / centerX) * 6;
                     
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                    card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
                 });
                 
                 card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                    card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale(1)';
                 });
             });
         }
@@ -823,4 +910,4 @@
 </body>
 </html>
 
-
+    
