@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <title>Marcos Coutinho | Desenvolvedor Full Stack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@200;300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <style>
     /* Estilo do texto selecionado */
@@ -301,6 +302,220 @@
         animation: animetad 8s linear infinite;
         /* Animação para criar um efeito de movimento no brilho */
     }
+
+    .sobre {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto 140px;
+        padding: 60px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .sobre-title {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        text-align: center;
+        margin: 0 auto 40px;
+    }
+
+    .sobre-title h2 {
+        margin: 0;
+        font-size: clamp(34px, 5vw, 52px);
+        line-height: 1.05;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: #ffffff;
+    }
+
+    .sobre-title h2 .sobre-small,
+    .sobre-title h2 .sobre-large {
+        font-size: 1em;
+        font-weight: 700;
+    }
+    .sobre-title h2 .sobre-small {
+        color: #888888;
+    }
+    .sobre-title h2 .sobre-large {
+        color: #ffffff;
+    }
+
+    .sobre-hr {
+        width: 120px;
+        height: 4px;
+        background: #ffffff;
+        border-radius: 999px;
+    }
+
+    .sobre-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        align-items: flex-start;
+        justify-content: center;
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    .sobre-text {
+        flex: 1 1 540px;
+        min-width: 320px;
+        max-width: 620px;
+        color: #e5e5e5;
+    }
+
+    .sobre-text p {
+        font-size: 16px;
+        line-height: 1.9;
+        margin-bottom: 18px;
+        opacity: 0.9;
+    }
+
+    .sobre-text p strong {
+        color: #ffffff;
+    }
+
+    .sobre-img {
+        flex: 0 0 380px;
+        min-width: 380px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        overflow: visible;
+    }
+
+    .sobre-img figure {
+        width: 380px;
+        height: 450px;
+        margin: 30px 0 0 0;
+        padding: 18px;
+        background: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        transform: rotate(5deg);
+        transform-origin: center center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .sobre-img figure img {
+        width: 340px;
+        height: 340px;
+        display: block;
+        border-radius: 4px;
+        object-fit: cover;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        background: #faf5ef;
+    }
+
+    .sobre-img figure .paper-tack {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        position: absolute;
+        top: 8px;
+        right: 14px;
+        background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f8e078 15%, #f0c420 45%, #d4a017 75%, #8c6224 100%);
+        border: 1px solid rgba(120, 80, 30, 0.35);
+        box-shadow: 
+            inset -3px -3px 6px rgba(0,0,0,0.25),
+            inset 2px 2px 5px rgba(255,255,255,0.7),
+            3px 5px 10px rgba(0,0,0,0.3),
+            0 0 0 1px rgba(0,0,0,0.05);
+        transform: rotate(-12deg);
+        z-index: 2;
+    }
+
+    .sobre-img figure .paper-tack::after {
+        content: "";
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 5px;
+        height: 14px;
+        background: linear-gradient(90deg, #999 0%, #ddd 40%, #999 100%);
+        border-radius: 0 0 3px 3px;
+        box-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        z-index: -1;
+    }
+
+    .sobre-img figure figcaption {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: center;
+        text-align: center;
+        color: #000000;
+        width: 100%;
+    }
+
+    .sobre-img figure .photo-title {
+        font-size: 20px;
+        font-family: 'Dancing Script', cursive;
+        font-weight: 700;
+        color: #1a1a1a;
+        letter-spacing: 0.4px;
+        margin-bottom: 4px;
+    }
+
+    .sobre-img figure .photo-title::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 1px;
+        margin: 6px 0 0;
+        background: rgba(0, 0, 0, 0.08);
+    }
+
+    .sobre-img figure .photo-desc {
+        font-size: 13px;
+        color: #333333;
+    }
+
+    @media (max-width: 992px) {
+        .sobre {
+            padding: 40px 16px;
+            gap: 24px;
+        }
+        .sobre-content {
+            flex-direction: column;
+            gap: 30px;
+        }
+        .sobre-img {
+            justify-content: flex-start;
+        }
+        .sobre-img figure {
+            width: 100%;
+            max-width: 320px;
+            transform: rotate(20deg);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .sobre {
+            padding: 40px 14px;
+            gap: 30px;
+        }
+        .sobre-text h2 {
+            font-size: 32px;
+        }
+        .sobre-text p {
+            font-size: 16px;
+        }
+    }
+
     @keyframes animetad {
         0% {
             background-position: 0% 50%;
@@ -770,9 +985,26 @@
        </div>
     </div>
     
-    <div class="titulo2 hidden" id="about">
-        <h1>Boas-Vindas ao meu portfólio!</h1>
-    </div>
+    <section class="sobre hidden" id="about">
+        <div class="sobre-title">
+            <h2><span class="sobre-small">Sobre</span> <span class="sobre-large">mim</span></h2>
+            <div class="sobre-hr"></div>
+        </div>
+        <div class="sobre-content">
+            <div class="sobre-text">
+                <p>Estou me formando em <strong>Análise e Desenvolvimento de Sistemas</strong> pela <strong>UEPB</strong>, com formação prevista para 2028. Possuo formação técnica em <strong>Informática para Internet</strong> pelo <strong>CPM (Colégio da Polícia Militar)</strong>, onde tive meu primeiro contato com o desenvolvimento web e aprendi diversas linguagens de programação, com destaque para <strong>PHP</strong>.</p> <p>Ao longo da minha trajetória, venho desenvolvendo projetos práticos que fortalecem minha base técnica e ampliam minha experiência. Atualmente, atuo como <strong>freelancer</strong>, criando soluções digitais completas com foco em organização, desempenho e boas práticas de desenvolvimento.</p> <p>Tenho experiência com tecnologias como <strong>PHP</strong>, <strong>Laravel</strong>, <strong>Python</strong> e <strong>MySQL</strong>, trabalhando no desenvolvimento de sistemas web, APIs e integrações. Estou em constante evolução, buscando aprimorar minhas habilidades e construir soluções cada vez mais eficientes e bem estruturadas.</p>
+            </div>
+            <div class="sobre-img">
+                <figure>
+                    <div class="paper-tack"></div>
+                    <img src="referencia.png" alt="Apresentação do Projeto DLAB" draggable="false">
+                    <figcaption>
+                        <span class="photo-title">Foto do projeto DLAB</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
     <section id="portfolio">
             <h2 style="text-align: center; font-size: 50px; margin-bottom: 100px; color: #fff; letter-spacing: 10px; font-weight: 200;">MEUS PROJETOS</h2>
     
@@ -965,7 +1197,35 @@
             setTimeout(typeEffect, typeSpeed);
         }
 
-        document.addEventListener('DOMContentLoaded', typeEffect);
+        document.addEventListener('DOMContentLoaded', () => {
+            typeEffect();
+            initSobreCarousel();
+        });
+
+        function initSobreCarousel() {
+            const carouselImages = [
+                { src: 'studio1.png', title: 'Studio Codar', desc: 'Visual do site Studio Codar' },
+                { src: 'project2.png', title: 'Barbearia Online', desc: 'Site da Barbearia' },
+                { src: 'project3.png', title: 'Painel de Administrador', desc: 'Design do painel administrativo' }
+            ];
+
+            const carouselImage = document.querySelector('.sobre-img figure img');
+            const carouselTitle = document.querySelector('.sobre-img figure .photo-title');
+
+            if (!carouselImage || !carouselTitle) return;
+
+            let carouselIndex = 0;
+            function updateSobreCarousel() {
+                const item = carouselImages[carouselIndex];
+                carouselImage.src = item.src;
+                carouselImage.alt = item.title;
+                carouselTitle.textContent = item.title;
+                carouselIndex = (carouselIndex + 1) % carouselImages.length;
+            }
+
+            updateSobreCarousel();
+            setInterval(updateSobreCarousel, 3000);
+        }
 
         // Efeito 3D Tilt nos Cards (Vanilla JS)
         // Só ativa se a tela for maior que 768px (Desktop/Tablet grande)
