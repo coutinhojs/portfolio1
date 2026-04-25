@@ -3,1002 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Marcos Coutinho - Desenvolvedor Full Stack especializado em Laravel, PHP, JavaScript e Python.">
+    <meta name="keywords" content="Marcos Coutinho, Desenvolvedor Full Stack, Laravel, PHP, JavaScript, Python, Portfólio">
+    <meta name="author" content="Marcos Coutinho">
+    <meta property="og:title" content="Marcos Coutinho | Desenvolvedor Full Stack">
+    <meta property="og:description" content="Portfólio profissional de Marcos Coutinho.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#000000">
     <link rel="icon" href="logo.png" type="image/png">
     <title>Marcos Coutinho | Desenvolvedor Full Stack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<style>
-    /* Estilo do texto selecionado */
-    ::selection {
-        background: #333333;
-        color: #ffffff;
-        text-shadow: 0 0 10px #ffffff;
-    }
-
-    /* Estilos do corpo da página */
-    body {
-        background: radial-gradient(circle at 50% 10%, #1a1a1a 0%, #000000 100%);
-        background-attachment: fixed; /* O fundo fica fixo enquanto o site rola (efeito premium) */
-        color: #ffffff;
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        overflow-x: hidden; /* Evita barra de rolagem horizontal durante animações */
-        scroll-behavior: smooth;
-    }
-
-    /* Estilos para o cabeçalho principal (h1) */
-    .titulo{
-        font-size: 100px;
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 20px;
-
-        /* Efeito de texto cromado */
-        background: linear-gradient(to right, #4d4d4d 0%, #ffffff 25%, #4d4d4d 50%, #ffffff 75%, #4d4d4d 100%);
-        background-size: 200% auto;
-        /* Gradiente que simula o reflexo do cromo */
-        -webkit-background-clip: text;
-        /* Aplica o fundo apenas no texto (para navegadores WebKit) */
-        background-clip: text;
-        /* Padrão para aplicar o fundo apenas no texto */
-        -webkit-text-fill-color: transparent;
-        /* Torna a cor do texto transparente para mostrar o fundo */
-
-        /* Efeito de brilho neon vermelho para combinar com o site */
-      
-        /* Aplica duas sombras para criar um brilho intenso */
-        animation: animetad 8s linear infinite;
-        /* Animação para criar um efeito de movimento no brilho */
-    }
-    @keyframes animetad {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-
-    /* Navbar Profissional */
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 30px 50px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 1000;
-        transition: 0.5s;
-    }
-
-    header.sticky {
-        background: rgba(0, 0, 0, 0.5);
-        padding: 15px 50px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-        backdrop-filter: blur(10px);
-    }
-
-    header .logo {
-        color: #fff;
-        font-weight: 800;
-        font-size: 24px;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    header ul {
-        display: flex;
-        gap: 30px;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    header .menu-toggle {
-        display: none;
-    }
-
-    header ul li a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 16px;
-        transition: 0.3s;
-        opacity: 0.7;
-    }
-
-    header ul li a:hover {
-        opacity: 1;
-        color: #fff;
-    }
-
-    /* Efeito de Digitação */
-    .typing-container {
-        font-size: 24px;
-        color: #ccc;
-        margin-top: 10px;
-        height: 30px; /* Altura fixa para evitar pulos */
-        font-weight: 300;
-    }
-    
-    .typing-text::after {
-        content: '|';
-        animation: blink 0.7s infinite;
-    }
-
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-
-    /* Ícones de redes sociais */
-    .fa-brands, .fa-solid {
-        font-size: 30px;
-        display: inline-block;
-        color: #ffffff;
-        text-decoration: none;
-    }
-
-    /* Contêiner dos ícones sociais */
-    .social-icons {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        min-height: 100vh;
-        justify-content: center;
-        width: 100%;
-        position: relative;
-    }
-
-    /* Container para os ícones ficarem lado a lado */
-    .icons-container {
-        display: flex;
-        flex-direction: row;
-        gap: 30px;
-    }
-
-    .icons-container a {
-        position: relative;
-    }
-
-    .icons-container a::after {
-        content: attr(data-tooltip);
-        position: absolute;
-        bottom: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        padding: 6px 10px;
-        border-radius: 10px;
-        font-size: 12px;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-        transform: translateX(-50%) translateY(5px);
-        z-index: 1001;
-    }
-
-    .icons-container a:hover::after {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-
-    /* Container para o conteúdo (imagem e texto) */
-    .content-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* Indicador de scroll (setas) */
-    .scroll-indicator {
-        position: absolute;
-        bottom: 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        animation: setinhas 2s infinite;
-    }
-
-    .scroll-indicator i {
-        font-size: 40px;
-        margin: -10px 0; /* Aproxima as setas para ficarem juntas */
-    }
-
-    @media (max-width: 768px) {
-        .scroll-indicator {
-            bottom: 20px;
-        }
-        .scroll-indicator i {
-            font-size: 32px;
-            margin: -6px 0;
-        }
-    }
-
-    @keyframes setinhas {
-        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-        40% {transform: translateY(-10px);}
-        60% {transform: translateY(-5px);}
-    }
-
-    p {
-        font-size: 24px;
-        margin: 0;
-        color: #cccccc; /* Cor cinza claro para melhor leitura */
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
-
-    /* Links dos ícones sociais */
-    .social-icons a {
-        transition: all 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 60px;
-        height: 60px;
-        border: 2px solid #ffffff;
-        border-radius: 50%;
-        text-decoration: none;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-
-    /* Efeito hover nos links */
-    .social-icons a:hover {
-        transform: translateY(-5px);
-        background-color: #ffffff;
-        box-shadow: 0 0 20px #ffffff;
-    }
-
-    /* Efeito hover nos ícones */
-    .social-icons a:hover i {
-        color: #000000;
-        text-shadow: none;
-    }
-
-    .titulo2{
-        min-height: 100vh;
-        padding: 100px 0; /* Espaçamento normalizado */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        gap: 20px;
-        
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 20px;
-
-        /* Efeito de texto cromado */
-        background: linear-gradient(to right, #4d4d4d 0%, #ffffff 25%, #4d4d4d 50%, #ffffff 75%, #4d4d4d 100%);
-        background-size: 200% auto;
-        /* Gradiente que simula o reflexo do cromo */
-        -webkit-background-clip: text;
-        /* Aplica o fundo apenas no texto (para navegadores WebKit) */
-        background-clip: text;
-        /* Padrão para aplicar o fundo apenas no texto */
-        -webkit-text-fill-color: transparent;
-        /* Torna a cor do texto transparente para mostrar o fundo */
-
-        /* Efeito de brilho neon vermelho para combinar com o site */
-      
-        /* Aplica duas sombras para criar um brilho intenso */
-        animation: animetad 8s linear infinite;
-        /* Animação para criar um efeito de movimento no brilho */
-    }
-
-    .sobre {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto 140px;
-        padding: 60px 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        background: none;
-        border: none;
-        box-shadow: none;
-    }
-
-    .sobre-title {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        align-items: center;
-        text-align: center;
-        margin: 0 auto 40px;
-    }
-
-    .sobre-title h2 {
-        margin: 0;
-        font-size: clamp(34px, 5vw, 52px);
-        line-height: 1.05;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 0.8px;
-        color: #ffffff;
-    }
-
-    .sobre-title h2 .sobre-small,
-    .sobre-title h2 .sobre-large {
-        font-size: 1em;
-        font-weight: 700;
-    }
-    .sobre-title h2 .sobre-small {
-        color: #888888;
-    }
-    .sobre-title h2 .sobre-large {
-        color: #ffffff;
-    }
-
-    .sobre-hr {
-        width: 120px;
-        height: 4px;
-        background: #ffffff;
-        border-radius: 999px;
-    }
-
-    .sobre-content {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 30px;
-        align-items: flex-start;
-        justify-content: center;
-        max-width: 980px;
-        margin: 0 auto;
-    }
-
-    .sobre-text {
-        flex: 1 1 540px;
-        min-width: 320px;
-        max-width: 620px;
-        color: #e5e5e5;
-    }
-
-    .sobre-text p {
-        font-size: 16px;
-        line-height: 1.9;
-        margin-bottom: 18px;
-        opacity: 0.9;
-        text-align: justify;
-    }
-
-    .sobre-text p strong {
-        color: #ffffff;
-    }
-
-    .sobre-img {
-        flex: 0 0 380px;
-        min-width: 380px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        overflow: visible;
-    }
-
-    .sobre-img figure {
-        width: 380px;
-        height: 450px;
-        margin: 30px 0 0 0;
-        padding: 18px;
-        background: #ffffff;
-        border-radius: 4px;
-        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.18);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        transform: rotate(5deg);
-        transform-origin: center center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
-
-    .sobre-img figure img {
-        width: 340px;
-        height: 340px;
-        display: block;
-        border-radius: 4px;
-        object-fit: cover;
-        border: 1px solid rgba(0, 0, 0, 0.12);
-        background: #faf5ef;
-    }
-
-    .sobre-img figure .paper-tack {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        position: absolute;
-        top: 8px;
-        right: 14px;
-        background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f8e078 15%, #f0c420 45%, #d4a017 75%, #8c6224 100%);
-        border: 1px solid rgba(120, 80, 30, 0.35);
-        box-shadow: 
-            inset -3px -3px 6px rgba(0,0,0,0.25),
-            inset 2px 2px 5px rgba(255,255,255,0.7),
-            3px 5px 10px rgba(0,0,0,0.3),
-            0 0 0 1px rgba(0,0,0,0.05);
-        transform: rotate(-12deg);
-        z-index: 2;
-    }
-
-    .sobre-img figure .paper-tack::after {
-        content: "";
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 5px;
-        height: 14px;
-        background: linear-gradient(90deg, #999 0%, #ddd 40%, #999 100%);
-        border-radius: 0 0 3px 3px;
-        box-shadow: 1px 2px 4px rgba(0,0,0,0.3);
-        z-index: -1;
-    }
-
-    .sobre-img figure figcaption {
-        margin-top: 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        align-items: center;
-        text-align: center;
-        color: #000000;
-        width: 100%;
-    }
-
-    .sobre-img figure .photo-title {
-        font-size: 20px;
-        font-family: 'Dancing Script', cursive;
-        font-weight: 700;
-        color: #1a1a1a;
-        letter-spacing: 0.4px;
-        margin-bottom: 4px;
-    }
-
-    .sobre-img figure .photo-title::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 1px;
-        margin: 6px 0 0;
-        background: rgba(0, 0, 0, 0.08);
-    }
-
-    .sobre-img figure .photo-desc {
-        font-size: 13px;
-        color: #333333;
-    }
-
-    @media (max-width: 992px) {
-        .sobre {
-            padding: 40px 16px;
-            gap: 24px;
-        }
-        .sobre-content {
-            flex-direction: column;
-            gap: 30px;
-        }
-        .sobre-img {
-            justify-content: flex-start;
-        }
-        .sobre-img figure {
-            width: 100%;
-            max-width: 320px;
-            transform: rotate(20deg);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .sobre {
-            padding: 40px 14px;
-            gap: 30px;
-        }
-        .sobre-text h2 {
-            font-size: 32px;
-        }
-        .sobre-text p {
-            font-size: 16px;
-        }
-    }
-
-    @keyframes animetad {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-
-    .titulo2 h1 {
-        font-size: clamp(60px, 12vw, 120px); /* Fonte maior e mais impactante */
-        line-height: 1.1;
-        margin-bottom: 30px;
-        letter-spacing: -2px;
-        font-weight: 800;
-    }
-
-    .projetos-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        max-width: 1200px;
-        gap: 40px; /* Espaço normal entre os cards */
-        padding-bottom: 100px;
-    }
-
-    .projeto1, .projeto2, .projeto3, .projeto4 {
-        width: 45%;
-        min-width: 300px;
-        min-height: 550px; /* Altura fixa para alinhar todos os cards */
-        margin: 0;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 25px;
-        background-color: #111;
-        border: 1px solid #333; 
-        border-radius: 20px;
-        transition: transform 0.2s ease;
-        position: relative;
-        overflow: hidden;
-        transform-style: preserve-3d; /* Necessário para o efeito 3D */
-        will-change: transform;
-        backface-visibility: hidden;
-        user-select: none;
-        -webkit-user-drag: none;
-    }
-
-    /* Efeito hover nos projetos */
-    .projeto1:hover, .projeto2:hover, .projeto3:hover, .projeto4:hover {
-        transform: translateY(-10px); /* Sobe um pouquinho */
-        border-color: #fff;
-    }
-    
-    .projeto1 img, .projeto2 img, .projeto3 img, .projeto4 img {
-        width: 100%;
-        height: 280px; /* Um pouco mais alto para valorizar a imagem */
-        object-fit: cover; /* A imagem cobre a área sem esticar */
-        border-radius: 12px;
-        margin-bottom: 20px;
-        transition: transform 0.3s ease;
-        opacity: 0.9;
-        transform: translateZ(20px); /* A imagem salta para frente no 3D */
-    }
-
-    /* Zoom na imagem ao passar o mouse */
-    .projeto1:hover img, .projeto2:hover img, .projeto3:hover img, .projeto4:hover img {
-        transform: scale(1.03);
-    }
-
-    .projeto1 h3, .projeto2 h3, .projeto3 h3, .projeto4 h3 {
-        font-size: 24px;
-        font-weight: 600;
-        margin: 0 0 10px 0;
-        color: #fff;
-        transform: translateZ(30px); /* Texto salta mais ainda */
-    }
-
-    .projeto1 p, .projeto2 p, .projeto3 p, .projeto4 p {
-        font-size: 16px;
-        color: #aaa;
-        margin-bottom: 20px;
-        line-height: 1.7;
-        opacity: 1; /* Texto sempre visível */
-        transform: none;
-        transform: translateZ(30px);
-        text-align: justify;
-    }
-
-    .project-tech {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 10px;
-        margin: 0 0 20px;
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        transform: translateZ(30px);
-    }
-
-    .project-tech span {
-        padding: 10px 16px;
-        border-radius: 12px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: #ccc;
-        font-size: 14px;
-        background: rgba(255, 255, 255, 0.05);
-        white-space: nowrap;
-        min-width: 90px;
-        text-align: center;
-    }
-
-    .btn-projeto {
-        padding: 12px 30px;
-        background-color: transparent;
-        border: 1px solid #fff;
-        color: #fff;
-        border-radius: 12px;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        margin-top: auto; /* Empurra o botão para o final se o card crescer */
-        transform: translateZ(40px); /* Botão no topo da pilha 3D */
-        align-self: flex-end;
-        min-width: 170px;
-    }
-
-    .btn-projeto:hover {
-        background-color: #fff;
-        color: #000;
-        transform: scale(1.05);
-    }
-
-    /* Estilo para projetos em desenvolvimento */
-    .em-breve {
-        opacity: 0.5;
-        pointer-events: none; /* Desabilita cliques */
-        filter: grayscale(100%);
-        border-style: dashed; /* Borda tracejada para indicar que está em construção */
-    }
-
-    .icon-dev {
-        font-size: 80px;
-        color: #333;
-        margin: 80px 0; /* Espaço para substituir a imagem visualmente */
-        transform: translateZ(20px);
-    }
-
-    /* Estilos da Seção de Habilidades */
-    .habilidades {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 100px 0; /* Espaçamento normalizado */
-        min-height: 100vh;
-        background: linear-gradient(to top, #000000, transparent);
-    }
-
-    .habilidades h2 {
-        font-size: 60px;
-        margin-bottom: 80px;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 8px;
-        font-weight: 200;
-    }
-
-    .skills-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 50px;
-        max-width: 1200px;
-    }
-
-    .skill-card {
-        background-color: rgba(20, 20, 20, 0.8);
-        padding: 50px;
-        border-radius: 20px;
-        width: 200px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: all 0.4s ease;
-        border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-
-    .skill-card:hover {
-        transform: translateY(-20px);
-        border-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 40px rgba(255, 255, 255, 0.15);
-        background-color: #000;
-    }
-
-    .skill-card i {
-        font-size: 70px;
-        margin-bottom: 20px;
-    }
-
-    .skill-card p {
-        font-size: 20px;
-        font-weight: 400;
-        color: #fff;
-        letter-spacing: 2px;
-    }
-
-    /* Rodapé simples */
-    footer {
-        width: 100%;
-        padding: 40px 20px;
-        text-align: center;
-        background-color: #000;
-        border-top: 1px solid #222;
-        color: #666;
-        font-size: 14px;
-        margin-top: auto;
-    }
-   
-    /* Classes para animação de Scroll (Aparecer quando descer) */
-    .hidden {
-        opacity: 0;
-        filter: blur(5px);
-        transform: translateY(100px); /* Começa mais de baixo para efeito dramático */
-        transition: all 1s ease-out; /* Demora 1s para aparecer */
-    }
-
-    .show {
-        opacity: 1;
-        filter: blur(0);
-        transform: translateY(0); /* Vai para a posição original */
-    }
-
-    /* Atraso para elementos filhos (efeito cascata) */
-    .projeto2, .projeto4 { transition-delay: 200ms; }
-    .skill-card:nth-child(even) { transition-delay: 100ms; }
-
-    /* Seção de Contato Profissional */
-    .contato {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 100px 0;
-        min-height: 80vh;
-        background: linear-gradient(to bottom, transparent, #000000);
-    }
-
-    .contato h2 {
-        font-size: 60px;
-        margin-bottom: 60px;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 8px;
-        font-weight: 200;
-    }
-
-    .form-container {
-        width: 100%;
-        max-width: 700px;
-        background-color: rgba(20, 20, 20, 0.8);
-        padding: 60px;
-        border-radius: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(15px);
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
-
-    .form-input {
-        width: 100%;
-        padding: 18px;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 15px;
-        color: #fff;
-        font-size: 16px;
-        font-family: 'Poppins', sans-serif;
-        outline: none;
-        transition: all 0.3s ease;
-    }
-
-    .form-input:focus {
-        border-color: #fff;
-        background: rgba(255, 255, 255, 0.08);
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-    }
-
-    textarea.form-input {
-        resize: vertical;
-        min-height: 180px;
-    }
-
-    .btn-enviar {
-        padding: 18px;
-        background-color: #fff;
-        color: #000;
-        border: none;
-        border-radius: 50px;
-        font-size: 18px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-top: 10px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .btn-enviar:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
-    }
-
-    /* --- ADAPTAÇÃO PARA CELULAR (RESPONSIVO) --- */
-    @media (max-width: 768px) {
-        /* Ajustes Gerais */
-        body { overflow-x: hidden; }
-        
-        /* Header / Menu */
-        header {
-            padding: 15px 20px;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            background: rgba(0, 0, 0, 0.95); /* Fundo mais sólido no mobile */
-        }
-        header .menu-toggle {
-            display: block;
-            position: absolute;
-            right: 20px;
-            top: 18px;
-            z-index: 1002;
-            background: transparent;
-            border: none;
-            color: #fff;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            outline: none;
-        }
-        header .menu-toggle i {
-            color: #fff;
-        }
-        header .menu-toggle:hover i,
-        header .menu-toggle:focus i {
-            color: #ffffff;
-        }
-        header ul {
-            display: none;
-            width: 100%;
-            flex-direction: column;
-            gap: 12px;
-            list-style: none;
-            margin: 0;
-            padding: 20px 0 0;
-            background: rgba(0, 0, 0, 0.95);
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-        header.mobile-open {
-            background: rgba(0, 0, 0, 0.95);
-        }
-        header.mobile-open ul {
-            display: flex;
-        }
-        header ul li a {
-            font-size: 14px;
-            width: 100%;
-            padding: 10px 0;
-            text-align: center;
-        }
-        header.sticky {
-            padding: 15px 20px;
-        }
-
-        /* Títulos e Textos */
-        .titulo { font-size: 50px; margin-top: 60px; } /* Nome principal menor */
-        .titulo2 h1 { font-size: 40px; letter-spacing: 0; }
-        .titulo2 { padding: 50px 0; min-height: auto; }
-        p { font-size: 18px; }
-        
-        /* Seção Social */
-        .social-icons { min-height: 80vh; }
-        .icons-container { gap: 20px; }
-        .typing-container { font-size: 18px; }
-
-        /* Projetos */
-        .projetos-container { gap: 30px; padding-bottom: 50px; }
-        
-        .projeto1, .projeto2, .projeto3, .projeto4 {
-            width: 90%; /* Ocupa quase toda a tela */
-            min-width: auto;
-            min-height: auto;
-            padding: 20px;
-        }
-
-        .projeto1 img, .projeto2 img, .projeto3 img, .projeto4 img {
-            height: 200px; /* Imagem menor */
-        }
-
-        /* No celular, mostra o texto e botão sempre (sem hover) */
-        .projeto1 p, .projeto2 p, .projeto3 p, .projeto4 p,
-        .btn-projeto {
-            opacity: 1;
-            transform: none;
-            color: #ccc;
-        }
-        .btn-projeto { margin-top: 15px; display: inline-block; }
-
-        /* Habilidades */
-        .habilidades h2 { font-size: 35px; letter-spacing: 2px; margin-bottom: 40px; }
-        .skills-container { gap: 20px; }
-        .skill-card { width: 45%; padding: 20px; } /* 2 por linha */
-        .skill-card i { font-size: 40px; }
-        .skill-card p { font-size: 16px; }
-
-        /* Contato */
-        .contato h2 { font-size: 35px; letter-spacing: 2px; }
-        .form-container { padding: 30px 20px; width: 90%; }
-        .contato { padding: 50px 0; }
-    }
-
-</style>
 <body>
+    <!-- Preloader -->
+    <div id="preloader" aria-hidden="true">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header / Navbar -->
     <header>
-        <a href="#" class="logo">Portfólio.</a>
-        <button class="menu-toggle" aria-label="Abrir menu">
+        <a href="#home" class="logo" aria-label="Ir para o início">Portfólio.</a>
+        <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <ul>
-            <li><a href="#home">Início</a></li>
-            <li><a href="#about">Sobre</a></li>
-            <li><a href="#portfolio">Projetos</a></li>
-            <li><a href="#skills">Habilidades</a></li>
-            <li><a href="#contact">Contato</a></li>
-        </ul>
+        <nav>
+            <ul id="nav-menu" role="menubar">
+                <li role="none"><a href="#home" role="menuitem">Início</a></li>
+                <li role="none"><a href="#about" role="menuitem">Sobre</a></li>
+                <li role="none"><a href="#portfolio" role="menuitem">Projetos</a></li>
+                <li role="none"><a href="#skills" role="menuitem">Habilidades</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contato</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="social-icons" id="home">
-       <div class="content-container">
-           <p class="hidden">Opa! Meu nome é </p>
-           <h1 class="titulo hidden" style="transition-delay: 200ms;">Marcos Coutinho</h1>
-           <div class="typing-container hidden" style="transition-delay: 400ms;"><span class="typing-text"></span></div>
-       </div>
-       <div class="icons-container hidden" style="transition-delay: 600ms;">
-            <a href="https://github.com/coutinhojs" target="_blank" rel="noopener noreferrer" data-tooltip="GitHub - ver repositório e código"><i class="fa-brands fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/marcos-c-610113354?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" data-tooltip="LinkedIn - acessar perfil profissional"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="mailto:coutinhoprog@gmail.com" data-tooltip="Email - enviar mensagem"><i class="fa-solid fa-envelope"></i></a>
-       </div>
-       <div class="scroll-indicator hidden" style="transition-delay: 800ms;">
-           <i class="fa-solid fa-angle-down"></i>
-           <i class="fa-solid fa-angle-down"></i>
-       </div>
-    </div>
-    
-    <section class="sobre hidden" id="about">
+    <!-- Hero Section -->
+    <section class="hero" id="home" aria-label="Seção inicial">
+        <div class="hero-content">
+            <p class="hero-greeting hidden">Opa! Meu nome é</p>
+            <h1 class="titulo chrome-text hidden" style="transition-delay: 200ms;">Marcos Coutinho</h1>
+            <div class="typing-container hidden" style="transition-delay: 400ms;">
+                <span class="typing-text" aria-live="polite"></span>
+            </div>
+        </div>
+        <div class="icons-container hidden" style="transition-delay: 600ms;">
+            <a href="https://github.com/coutinhojs" target="_blank" rel="noopener noreferrer" data-tooltip="GitHub - ver repositório e código" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/marcos-c-610113354" target="_blank" rel="noopener noreferrer" data-tooltip="LinkedIn - acessar perfil profissional" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="mailto:coutinhoprog@gmail.com" data-tooltip="Email - enviar mensagem" aria-label="Email">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        </div>
+        <div class="scroll-indicator hidden" style="transition-delay: 800ms;" aria-hidden="true">
+            <i class="fa-solid fa-angle-down"></i>
+            <i class="fa-solid fa-angle-down"></i>
+        </div>
+        <canvas id="particles-canvas" aria-hidden="true"></canvas>
+    </section>
+
+    <!-- About Section -->
+    <section class="sobre hidden" id="about" aria-label="Sobre mim">
         <div class="sobre-title">
             <h2><span class="sobre-small">Sobre</span> <span class="sobre-large">mim</span></h2>
             <div class="sobre-hr"></div>
         </div>
         <div class="sobre-content">
             <div class="sobre-text">
-                <p>Estou me formando em <strong>Análise e Desenvolvimento de Sistemas</strong> pela <strong>UEPB</strong>, com formação prevista para 2028. Possuo formação técnica em <strong>Informática para Internet</strong> pelo <strong>CPM (Colégio da Polícia Militar)</strong>, onde tive meu primeiro contato com o desenvolvimento web e aprendi diversas linguagens de programação, com destaque para <strong>PHP</strong>.</p> <p>Ao longo da minha trajetória, venho desenvolvendo projetos práticos que fortalecem minha base técnica e ampliam minha experiência. Atualmente, atuo como <strong>freelancer</strong>, criando soluções digitais completas com foco em organização, desempenho e boas práticas de desenvolvimento.</p> <p>Tenho experiência com tecnologias como <strong>PHP</strong>, <strong>Laravel</strong>, <strong>Python</strong> e <strong>MySQL</strong>, trabalhando no desenvolvimento de sistemas web, APIs e integrações. Estou em constante evolução, buscando aprimorar minhas habilidades e construir soluções cada vez mais eficientes e bem estruturadas.</p>
+                <p>Sou um desenvolvedor apaixonado por tecnologia e inovação. Tenho experiência prática em projetos web utilizando <strong>Laravel, PHP, JavaScript, Python e MySQL</strong>.</p>
+                <p>Meu foco é criar soluções eficientes, com código limpo e interfaces modernas. Sempre busco aprender novas tecnologias e aprimorar minhas habilidades para entregar o melhor resultado.</p>
+                <p>Atualmente trabalho com desenvolvimento web full stack, desde o planejamento até a entrega final do projeto.</p>
             </div>
             <div class="sobre-img">
                 <figure>
+                    <span class="paper-label">Projetos</span>
                     <div class="paper-tack"></div>
-                    <img src="referencia.png" alt="Apresentação do Projeto DLAB" draggable="false">
+                    <img src="referencia.png" alt="Apresentação do Projeto DLAB" draggable="false" loading="lazy">
                     <figcaption>
                         <span class="photo-title">Foto do projeto DLAB</span>
                     </figcaption>
@@ -1006,67 +90,68 @@
             </div>
         </div>
     </section>
-    <section id="portfolio">
-            <h2 style="text-align: center; font-size: 50px; margin-bottom: 100px; color: #fff; letter-spacing: 10px; font-weight: 200;">MEUS PROJETOS</h2>
-    
-            <div class="projetos-container">
-                <!-- Projeto 1 -->
-                <div class="projeto1 hidden" draggable="false">
-                    <img src="studio1.png" alt="Studio Codar" draggable="false">
-                    <h3>Studio Codar</h3>
-                    <p>Site Studio Codar com conteúdo para iniciantes, incluindo templates prontos, área de código ao vivo e um chatbot, além de aplicações práticas e design responsivo para facilitar o primeiro contato com programação.</p>
-                    <div class="project-tech">
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                        <span>PHP</span>
-                        <span>Bootstrap</span>
-                    </div>
-                    <a href="https://studiocodar.rf.gd/aplica%C3%A7%C3%B5es.php" target="_blank" rel="noopener noreferrer" class="btn-projeto">Ver projeto</a>
-                </div>
-                <!-- Projeto 2 -->
-                <div class="projeto2 hidden" draggable="false">
-                    <img src="project2.png" alt="Barbearia Online" draggable="false">
-                    <h3>Barbearia Online</h3>
-                    <p>Sistema de agendamento e gestão para barbearia, desenvolvido em equipe com foco em usabilidade, atendimento personalizado e organização de serviços.</p>
-                    <div class="project-tech">
-                        <span>Laravel</span>
-                        <span>PHP</span>
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                        <span>MySQL</span>
-                        <span>Bootstrap</span>
-                    </div>
-                    <a href="https://github.com/coutinhojs/barbearia" target="_blank" class="btn-projeto">Ver projeto</a>
-                </div>
-                <!-- Projeto 3 -->
-                <div class="projeto3 hidden" draggable="false">
-                    <img src="project3.png" alt="Painel de Administrador" draggable="false">
-                    <h3>Painel de Administrador</h3>
-                    <p>Painel administrativo criado com Laravel e Filament para a barbearia, com acesso separado para administrador e barbeiros, permitindo que cada um veja apenas seus próprios agendamentos e gerencie seu controle individual.</p>
-                    <div class="project-tech">
-                        <span>Laravel</span>
-                        <span>PHP</span>
-                        <span>Filament</span>
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                        <span>JavaScript</span>
-                    </div>
-                </div>
-                    <!-- Projeto 4 -->
-                <div class="projeto4 hidden em-breve" draggable="false">
-                    <i class="fa-solid fa-screwdriver-wrench icon-dev"></i>
-                    <h3>EM DESENVOLVIMENTO</h3>
-                    <p>Novidades em breve...</p>
-                    <a href="#" class="btn-projeto">Aguarde</a>
-                </div>
-            </div>
 
+    <!-- Projects Section -->
+    <section id="portfolio" aria-label="Meus projetos">
+        <h2 class="section-title">MEUS PROJETOS</h2>
+        <div class="projetos-container">
+            <!-- Projeto 1 -->
+            <article class="project-card hidden" draggable="false">
+                <img src="studio1.png" alt="Studio Codar" class="project-image" draggable="false" loading="lazy">
+                <h3 class="project-title">Studio Codar</h3>
+                <p class="project-description">Site Studio Codar com conteúdo para iniciantes, incluindo templates prontos, área de código ao vivo e um chatbot, além de aplicações práticas e design responsivo.</p>
+                <div class="project-tech">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                    <span>PHP</span>
+                    <span>Bootstrap</span>
+                </div>
+                <a href="https://studiocodar.rf.gd/index.php" target="_blank" rel="noopener noreferrer" class="btn-projeto">Ver projeto</a>
+            </article>
+            <!-- Projeto 2 -->
+            <article class="project-card hidden" draggable="false">
+                <img src="project2.png" alt="Barbearia Online" class="project-image" draggable="false" loading="lazy">
+                <h3 class="project-title">Barbearia Online</h3>
+                <p class="project-description">Sistema de agendamento e gestão para barbearia, desenvolvido em equipe com foco em usabilidade, atendimento personalizado e organização de serviços.</p>
+                <div class="project-tech">
+                    <span>Laravel</span>
+                    <span>PHP</span>
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                    <span>MySQL</span>
+                    <span>Bootstrap</span>
+                </div>
+                <a href="https://github.com/coutinhojs/barbearia" target="_blank" rel="noopener noreferrer" class="btn-projeto">Ver projeto</a>
+            </article>
+            <!-- Projeto 3 -->
+            <article class="project-card hidden" draggable="false">
+                <img src="project3.png" alt="Painel de Administrador" class="project-image" draggable="false" loading="lazy">
+                <h3 class="project-title">Painel de Administrador</h3>
+                <p class="project-description">Painel administrativo criado com Laravel e Filament para a barbearia, com acesso separado para administrador e barbeiros, permitindo controle individual de agendamentos.</p>
+                <div class="project-tech">
+                    <span>Laravel</span>
+                    <span>PHP</span>
+                    <span>Filament</span>
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
+                </div>
+            </article>
+            <!-- Projeto 4 -->
+            <article class="project-card hidden coming-soon" draggable="false">
+                <i class="fa-solid fa-screwdriver-wrench dev-icon"></i>
+                <h3 class="project-title">EM DESENVOLVIMENTO</h3>
+                <p class="project-description">Novidades em breve...</p>
+                <a href="#" class="btn-projeto" aria-disabled="true">Aguarde</a>
+            </article>
+        </div>
     </section>
 
-    <section class="habilidades hidden" id="skills">
-        <h2>Minhas Habilidades</h2>
+    <!-- Skills Section -->
+    <section class="skills-section hidden" id="skills" aria-label="Minhas habilidades">
+        <h2 class="section-title">Minhas Habilidades</h2>
         <div class="skills-container">
             <div class="skill-card">
                 <i class="fa-brands fa-html5" style="color: #e34f26;"></i>
@@ -1107,157 +192,64 @@
         </div>
     </section>
 
-    <section class="contato hidden" id="contact">
-        <h2>Entre em Contato</h2>
-        <form class="form-container" action="https://api.web3forms.com/submit" method="POST">
+    <!-- Contact Section -->
+    <section class="contact-section hidden" id="contact" aria-label="Entre em contato">
+        <h2 class="section-title">Entre em Contato</h2>
+        <form class="form-container" action="https://api.web3forms.com/submit" method="POST" aria-label="Formulário de contato">
             <input type="hidden" name="access_key" value="a40724ec-124f-4bc2-9c71-c34c14f6f448">
-            <input type="text" name="name" class="form-input" placeholder="Seu Nome" required>
-            <input type="email" name="email" class="form-input" placeholder="Seu E-mail" required>
-            <textarea name="message" class="form-input" placeholder="Sua Mensagem" required></textarea>
+            <input type="text" name="name" class="form-input" placeholder="Seu Nome" required aria-required="true" aria-label="Nome">
+            <input type="email" name="email" class="form-input" placeholder="Seu E-mail" required aria-required="true" aria-label="Email">
+            <textarea name="message" class="form-input" placeholder="Sua Mensagem" required aria-required="true" aria-label="Mensagem"></textarea>
             <input type="hidden" name="subject" value="Novo Contato do Portfólio!">
-            <button type="submit" class="btn-enviar">Enviar <i class="fa-solid fa-envelope"></i></button>
+            <button type="submit" class="btn-enviar">Enviar <i class="fa-solid fa-envelope" aria-hidden="true"></i></button>
         </form>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p style="font-size: 14px;">&copy; 2026 Marcos Coutinho. Todos os direitos reservados.</p>
+        <p>&copy; <span id="year"></span> Marcos Coutinho. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Script para animação de scroll -->
-    <script>
-        // Forçar rolagem para o topo ao recarregar a página (F5)
-        if (history.scrollRestoration) {
-            history.scrollRestoration = 'manual';
-        }
+    <!-- Settings Button -->
+    <button class="settings-btn" id="settingsBtn" aria-label="Abrir configurações" aria-expanded="false" aria-controls="settingsPanel">
+        <i class="fa-solid fa-gear"></i>
+    </button>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        });
+    <!-- Settings Panel -->
+    <aside class="settings-panel" id="settingsPanel" aria-hidden="true" aria-label="Painel de configurações">
+        <div class="settings-header">
+            <h3>Configurações</h3>
+            <button class="settings-close" id="settingsClose" aria-label="Fechar configurações">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="settings-body">
+            <div class="setting-item">
+                <label for="themeSelect">Tema</label>
+                <select id="themeSelect" class="settings-select">
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                    <option value="cyberpunk">Cyberpunk</option>
+                    <option value="ocean">Ocean</option>
+                </select>
+            </div>
+            <div class="setting-item">
+                <label for="animToggle">Animações</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="animToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <div class="setting-item">
+                <label for="particlesToggle">Partículas</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="particlesToggle" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+    </aside>
 
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
-
-        // Navbar Sticky (Muda de cor ao rolar)
-        const menuToggle = document.querySelector('.menu-toggle');
-        const header = document.querySelector('header');
-
-        menuToggle.addEventListener('click', function() {
-            header.classList.toggle('mobile-open');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-xmark');
-        });
-
-        const navLinks = document.querySelectorAll('header ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (header.classList.contains('mobile-open')) {
-                    header.classList.remove('mobile-open');
-                    const icon = menuToggle.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-xmark');
-                }
-            });
-        });
-
-        window.addEventListener('scroll', function() {
-            header.classList.toggle('sticky', window.scrollY > 0);
-        });
-
-        // Efeito de Digitação (Typewriter)
-        const textElement = document.querySelector('.typing-text');
-        const words = ["Desenvolvedor Web", "Criativo", "Apaixonado por Tech", "Freelancer"];
-        let wordIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeEffect() {
-            const currentWord = words[wordIndex];
-            
-            if (isDeleting) {
-                textElement.textContent = currentWord.substring(0, charIndex--);
-            } else {
-                textElement.textContent = currentWord.substring(0, charIndex++);
-            }
-
-            let typeSpeed = isDeleting ? 100 : 200;
-
-            if (!isDeleting && charIndex === currentWord.length + 1) {
-                isDeleting = true;
-                typeSpeed = 2000; // Pausa no final da palavra
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeEffect, typeSpeed);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            typeEffect();
-            initSobreCarousel();
-        });
-
-        function initSobreCarousel() {
-            const carouselImages = [
-                { src: 'studio1.png', title: 'Studio Codar', desc: 'Visual do site Studio Codar' },
-                { src: 'project2.png', title: 'Barbearia Online', desc: 'Site da Barbearia' },
-                { src: 'project3.png', title: 'Painel de Administrador', desc: 'Design do painel administrativo' }
-            ];
-
-            const carouselImage = document.querySelector('.sobre-img figure img');
-            const carouselTitle = document.querySelector('.sobre-img figure .photo-title');
-
-            if (!carouselImage || !carouselTitle) return;
-
-            let carouselIndex = 0;
-            function updateSobreCarousel() {
-                const item = carouselImages[carouselIndex];
-                carouselImage.src = item.src;
-                carouselImage.alt = item.title;
-                carouselTitle.textContent = item.title;
-                carouselIndex = (carouselIndex + 1) % carouselImages.length;
-            }
-
-            updateSobreCarousel();
-            setInterval(updateSobreCarousel, 3000);
-        }
-
-        // Efeito 3D Tilt nos Cards (Vanilla JS)
-        // Só ativa se a tela for maior que 768px (Desktop/Tablet grande)
-        if (window.matchMedia("(min-width: 769px)").matches) {
-            const cards = document.querySelectorAll('.projeto1, .projeto2, .projeto3, .projeto4');
-            
-            cards.forEach(card => {
-                card.addEventListener('dragstart', (e) => {
-                    e.preventDefault();
-                });
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = ((y - centerY) / centerY) * -6; // Rotação mais suave
-                    const rotateY = ((x - centerX) / centerX) * 6;
-                    
-                    card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale(1)';
-                });
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-    
