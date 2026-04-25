@@ -497,7 +497,7 @@ const ParticleSystem = {
 };
 
 // ============================================
-// 11. FOOTER YEAR
+// 11. FOOTER YEAR/*  */
 // ============================================
 
 const FooterYear = {
@@ -551,6 +551,226 @@ const ActiveNavLink = {
 };
 
 // ============================================
+// 14. SKILLS TABS
+// ============================================
+
+const SkillsTabs = {
+    tabs: null,
+    contents: null,
+    
+    init() {
+        this.tabs = document.querySelectorAll('.skills-tab-btn');
+        this.contents = document.querySelectorAll('.tab-content');
+        
+        if (!this.tabs.length || !this.contents.length) return;
+        
+        this.tabs.forEach(tab => {
+            tab.addEventListener('click', () => this.switchTab(tab));
+        });
+    },
+    
+    switchTab(activeTab) {
+        const targetId = activeTab.getAttribute('aria-controls');
+        
+        // Update buttons
+        this.tabs.forEach(tab => {
+            tab.classList.remove('active');
+            tab.setAttribute('aria-selected', 'false');
+        });
+        activeTab.classList.add('active');
+        activeTab.setAttribute('aria-selected', 'true');
+        
+        // Update content
+        this.contents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === targetId) {
+                content.classList.add('active');
+            }
+        });
+    }
+};
+
+// ============================================
+// 15. CERTIFICATE LIGHTBOX
+// ============================================
+
+const CertificateLightbox = {
+    lightbox: null,
+    img: null,
+    inner: null,
+    cursor: null,
+    isZoomed: false,
+    isOverImage: false,
+    
+    init() {
+        const certCards = document.querySelectorAll('.certificate-card');
+        if (!certCards.length) return;
+        
+        // Create lightbox element (sem botão X)
+        this.lightbox = document.createElement('div');
+        this.lightbox.className = 'cert-lightbox';
+        this.lightbox.innerHTML = `
+            <div class="cert-lightbox-inner">
+                <img src="" alt="">
+            </div>
+            <div class="cert-lightbox-cursor" aria-hidden="true">
+                <div class="cursor-icon cursor-zoom">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </div>
+                <div class="cursor-icon cursor-close">
+                    <div class="cursor-close-circle">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(this.lightbox);
+        
+        this.inner = this.lightbox.querySelector('.cert-lightbox-inner');
+        this.img = this.lightbox.querySelector('img');
+        this.cursor = this.lightbox.querySelector('.cert-lightbox-cursor');
+        
+        // Events nos cards
+        certCards.forEach(card => {
+            card.addEventListener('click', () => this.open(card.querySelector('img')));
+        });
+        
+        // Mouse tracking
+        this.lightbox.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+        this.lightbox.addEventListener('mouseleave', () => this.handleMouseLeave());
+        
+        // Click para fechar (fora da imagem) ou zoom (na imagem)
+        this.lightbox.addEventListener('click', (e) => this.handleClick(e));
+        
+        // Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.close();
+        });
+        
+        // Detectar se é desktop (tem mouse)
+        this.isDesktop = !window.matchMedia('(pointer: coarse)').matches;
+    },
+    
+    handleMouseMove(e) {
+        if (!this.isDesktop) return;
+        
+        const rect = this.img.getBoundingClientRect();
+        const x = e.clientX;
+        const y = e.clientY;
+        
+        // Verificar se mouse está sobre a imagem
+        const wasOverImage = this.isOverImage;
+        this.isOverImage = (
+            x >= rect.left && x <= rect.right &&
+            y >= rect.top && y <= rect.bottom
+        );
+        
+        // Atualizar posição do cursor customizado
+        this.cursor.style.left = `${x}px`;
+        this.cursor.style.top = `${y}px`;
+        
+        // Atualizar estado visual
+        if (this.isOverImage !== wasOverImage) {
+            this.updateCursorState();
+        }
+    },
+    
+    handleMouseLeave() {
+        if (!this.isDesktop) return;
+        this.isOverImage = false;
+        this.updateCursorState();
+    },
+    
+    updateCursorState() {
+        if (this.isOverImage) {
+            this.cursor.classList.remove('cursor-mode-close');
+            this.cursor.classList.add('cursor-mode-zoom');
+            this.lightbox.classList.add('cursor-zoom-active');
+            this.lightbox.classList.remove('cursor-close-active');
+        } else {
+            this.cursor.classList.remove('cursor-mode-zoom');
+            this.cursor.classList.add('cursor-mode-close');
+            this.lightbox.classList.add('cursor-close-active');
+            this.lightbox.classList.remove('cursor-zoom-active');
+        }
+    },
+    
+    handleClick(e) {
+        const rect = this.img.getBoundingClientRect();
+        const x = e.clientX;
+        const y = e.clientY;
+        
+        const clickedOnImage = (
+            x >= rect.left && x <= rect.right &&
+            y >= rect.top && y <= rect.bottom
+        );
+        
+        if (clickedOnImage) {
+            // Toggle zoom
+            this.toggleZoom();
+        } else {
+            // Fechar lightbox
+            this.close();
+        }
+    },
+    
+    toggleZoom() {
+        this.isZoomed = !this.isZoomed;
+        if (this.isZoomed) {
+            this.img.classList.add('zoomed');
+            this.cursor.querySelector('.cursor-zoom i').classList.remove('fa-magnifying-glass-plus');
+            this.cursor.querySelector('.cursor-zoom i').classList.add('fa-magnifying-glass-minus');
+        } else {
+            this.img.classList.remove('zoomed');
+            this.cursor.querySelector('.cursor-zoom i').classList.remove('fa-magnifying-glass-minus');
+            this.cursor.querySelector('.cursor-zoom i').classList.add('fa-magnifying-glass-plus');
+        }
+    },
+    
+    open(sourceImg) {
+        if (!sourceImg) return;
+        this.img.src = sourceImg.src;
+        this.img.alt = sourceImg.alt;
+        this.isZoomed = false;
+        this.img.classList.remove('zoomed');
+        
+        // Reset cursor zoom icon
+        const zoomIcon = this.cursor.querySelector('.cursor-zoom i');
+        zoomIcon.classList.remove('fa-magnifying-glass-minus');
+        zoomIcon.classList.add('fa-magnifying-glass-plus');
+        
+        this.lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Ativar cursor customizado no desktop
+        if (this.isDesktop) {
+            this.cursor.style.display = 'block';
+            // Estado inicial: fora da imagem (close)
+            this.isOverImage = false;
+            this.updateCursorState();
+        }
+    },
+    
+    close() {
+        this.lightbox.classList.remove('active');
+        this.lightbox.classList.remove('cursor-zoom-active');
+        this.lightbox.classList.remove('cursor-close-active');
+        document.body.style.overflow = '';
+        this.isZoomed = false;
+        this.img.classList.remove('zoomed');
+
+        // Reset cursor zoom icon
+        const zoomIcon = this.cursor.querySelector('.cursor-zoom i');
+        zoomIcon.classList.remove('fa-magnifying-glass-minus');
+        zoomIcon.classList.add('fa-magnifying-glass-plus');
+
+        if (this.isDesktop) {
+            this.cursor.style.display = 'none';
+        }
+    }
+};
+
+// ============================================
 // INITIALIZATION
 // ============================================
 
@@ -567,4 +787,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ParticleSystem.init();
     FooterYear.init();
     ActiveNavLink.init();
+    SkillsTabs.init();
+    CertificateLightbox.init();
 });
