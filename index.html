@@ -297,25 +297,25 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <script>
-    (function(){
-        emailjs.init("T4_uOuAC4CvZpbjHF");
-    })();
-
-    const form = document.getElementById("contact-form");
-
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        emailjs.sendForm("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", this)
-        .then(() => {
-            alert("Mensagem enviada!");
-            form.reset();
-        })
-        .catch((error) => {
-            console.error("Erro:", error);
-            alert("Erro ao enviar.");
+        (function(){
+            emailjs.init("T4_uOuAC4CvZpbjHF");
+        })();
+        
+        const form = document.getElementById("contact-form");
+        
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+        
+            emailjs.sendForm("service_t5yro5p", "template_npeps4p", this)
+            .then(() => {
+                alert("Mensagem enviada com sucesso!");
+                form.reset();
+            })
+            .catch((error) => {
+                console.error("Erro:", error);
+                alert("Erro ao enviar. Veja o console.");
+            });
         });
-    });
-    </script>
+</script>
 </body>
 </html>
