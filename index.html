@@ -239,12 +239,12 @@
     <section class="contact-section hidden" id="contact" aria-label="Entre em contato">
         <h2 class="section-title">Contato</h2>
         <div class="form-container">
-            <form action="mailto:coutinhoprog@gmail.com" method="post" enctype="text/plain">
-                <input type="text" name="nome" placeholder="Seu nome" class="form-input" required>
-                <input type="email" name="email" placeholder="Seu email" class="form-input" required>
-                <textarea name="mensagem" placeholder="Sua mensagem" class="form-input" required></textarea>
-                <button type="submit" class="btn-enviar">Enviar Mensagem</button>
-            </form>
+         <form id="contact-form">
+            <input type="text" name="nome" placeholder="Seu nome" class="form-input" required>
+            <input type="email" name="email" placeholder="Seu email" class="form-input" required>
+            <textarea name="mensagem" placeholder="Sua mensagem" class="form-input" required></textarea>
+            <button type="submit" class="btn-enviar">Enviar Mensagem</button>
+        </form>
         </div>
     </section>
 
@@ -292,5 +292,30 @@
     </div>
 
     <script src="script.js"></script>
+
+      <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script>
+    (function(){
+        emailjs.init("T4_uOuAC4CvZpbjHF");
+    })();
+
+    const form = document.getElementById("contact-form");
+
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        emailjs.sendForm("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", this)
+        .then(() => {
+            alert("Mensagem enviada!");
+            form.reset();
+        })
+        .catch((error) => {
+            console.error("Erro:", error);
+            alert("Erro ao enviar.");
+        });
+    });
+    </script>
 </body>
 </html>
